@@ -1,0 +1,5 @@
+name: extended-file
+---
+File:
+  extensions:
+    - ExtendedFile
