@@ -8,6 +8,8 @@
  */
  
 class ExtendedFile extends DataExtension {
+	
+	private static $cloud_url = null;
 
     /**
 	 * Save an file passed from a form post into this object.
@@ -63,5 +65,19 @@ class ExtendedFile extends DataExtension {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Gets the Cloud URL accessible through the web.
+	 * 
+	 * Concatenates the relative URL with the ExtendedFile CloudUrl Config
+	 *
+	 * @return string
+	 */
+	public function getCloudURL() {
+		if($CloudUrl = Config::inst()->get('ExtendedFile', 'cloud_url'))
+			return $CloudUrl.$this->owner->getURL();
+		else
+			return $this->owner->getAbsoluteURL();
 	}
 }
